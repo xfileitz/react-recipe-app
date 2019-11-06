@@ -7,6 +7,7 @@ import SingleRecipe from "./pages/SingleRecipe";
 import Default from "./pages/Default";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
+
 class App extends Component {
   render() {
     return (
@@ -20,7 +21,7 @@ class App extends Component {
             <Route path="/recipes" exact component={Recipes} />
             <Route path="/recipes/:id" component={SingleRecipe} />
 
-            <Route Component={Default} />
+            <Route component={Default} />
             {/* <div className="App">
               <Home />
               <Recipes />
