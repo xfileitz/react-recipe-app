@@ -7,12 +7,27 @@ export default class SingleRecipe extends Component {
     super(props);
     const id = this.props.match.params.id;
     this.state = {
-      recipe: recipeData,
+      recipe: {},
       id,
-      loading: false
+      loading: true
     };
   }
 
+  async componentDidMount() {
+    const url = `https://www.food2fork.com/api/get?key=${process.env.REACT_APP_API_KEY}&rId=${this.state.id}`;
+    // const url = `https://www.food2fork.com/api/get?key=3c5a2005dcf6970d5cc544f4f4ce0e00&rId=${this.state.id}`;
+    try {
+      const response = await fetch(url);
+      const responseData = await response.json();
+      this.setState({
+        recipe: responseData.recipe,
+        loading: false
+      });
+      console.log(responseData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   render() {
     const {
       image_url,
